@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="sk" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Registrácia pracovníka</title>
+</head>
+<body>
+
+<h3>Formulár pre pracovníka</h3>
+
+<form th:action="@{/spracujFormular}" th:object="${employee}" method="POST">
+  First name: <input type="text" th:field="${employee.firstName}"/>
+  <br><br>
+  Last name: <input type="text" th:field="*{lastName}"/>
+  <br><br>
+  Country:
+  <select th:field="*{jobTitle}">
+    <!--        <option th:value="Slovensko">Brazil</option>-->
+    <!--        <option th:value="Cesko">France</option>-->
+    <option th:each="tempJobTitle : ${job_title}" th:value="${tempJobTitle}" th:text="${tempJobTitle}"/>
+  </select>
+  <br><br>
+  <input type="submit" value="Submit"/>
+</form>
+
+</body>
+</html>
